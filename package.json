@@ -1,0 +1,19 @@
+{
+  "name": "dronette",
+  "version": "1.0.0",
+  "description": "Social media app featuring drone vignettes built in the MERN stack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seabassgonzalez/dronette.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seabassgonzalez/dronette/issues"
+  },
+  "homepage": "https://github.com/seabassgonzalez/dronette#readme"
+}
