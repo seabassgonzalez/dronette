@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/seabassgonzalez/dronette/issues"
   },
-  "homepage": "https://github.com/seabassgonzalez/dronette#readme"
+  "homepage": "https://github.com/seabassgonzalez/dronette#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
