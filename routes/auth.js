@@ -51,7 +51,17 @@ router.post('/signin', (req, res) => {
 		if(!savedUser){
 			return res.status(422).json({error:"Invalid email or password"});
 		}
-		
+		bcrypt.compare(password, savedUser.password)
+		.then(doMatch=>{
+			if(doMatch){
+				res.json({message:"Successfully signed in"});
+			} else {
+				return res.status(422).json({error:"Invalid email or password"});
+			}
+		})
+		.catch(err=>{
+			console.log(err);
+		});
 	});
 });
 
