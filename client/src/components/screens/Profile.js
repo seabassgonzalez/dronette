@@ -2,7 +2,7 @@ import React from 'react';
 
 const Profile = () => {
 	return (
-		<div>
+		<div style={{maxWidth:"550px", margin:"0px auto"}}>
 			<div style={{
 				display:"flex",
 				justifyContent:"space-around",
@@ -22,6 +22,14 @@ const Profile = () => {
 						<h6>50 following</h6>
 					</div>
 				</div> 
+			</div>
+			<div className="gallery">
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
+				<img className="item" src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s320x320/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=gh_prBWUMPwAX_QkJ6T&oh=df0d7bd50b6b9a6d62471ef35bc93364&oe=5FCFF6B9"/>
 			</div>
 		</div>
 	);
