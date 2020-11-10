@@ -24,10 +24,6 @@ a{
 	box-shadow: 0 1px 0 0 rgb(142,68,173) !important;
 }
 
-.profile{
-	
-}
-
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
@@ -36,4 +32,10 @@ a{
 
 .item{
 	width: 30%;
+}
+
+.home-card {
+	max-width: 500px;
+	height: max-content;
+	margin: 26px auto;
 }
