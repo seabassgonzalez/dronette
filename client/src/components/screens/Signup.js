@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+	const [name, setName] = useState("");
+	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
+
 	return (
 		<div className="mycard">
 			<div className="card auth-card input-field">
