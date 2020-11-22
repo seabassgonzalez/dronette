@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const PORT = 5000;	
 const { MONGOURI } = require('./keys');
+
+app.use(cors());
 
 mongoose.connect(MONGOURI, {
 	useNewUrlParser: true,
