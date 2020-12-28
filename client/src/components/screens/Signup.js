@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import M from 'materialize-css';
 
 const Login = () => {
 	const [name, setName] = useState("");
@@ -18,7 +19,11 @@ const Login = () => {
 			})
 		}).then(res=>res.json())
 			.then(data=>{
-				console.log(data)
+				if(data.error){
+					M.toast({html: data.error, classes: "#c62828 red darken-1"})
+				} else {
+					M.toast({html: data.message, classes: "#43a047 green darken-1"})
+				}
 			})
 	}
 
