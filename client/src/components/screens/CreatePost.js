@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const CreatePost = () => {
-	return (
+	const [title, setTitle] = useState("");
+	const [body, setBody] = useState(""); 
+   	return (
 		<div className="card input-field"
 			style={{
 				margin: "30px auto",
@@ -10,8 +12,18 @@ const CreatePost = () => {
 				textAlign: "center"
 			}}
 		>
-			<input type="text" placeholder="title" />
-			<input type="text" placeholder="body" />
+			<input 
+				type="text" 
+				placeholder="title" 
+				value={title}
+				onChange={(e)=>setTitle(e.target.value)}
+			/>
+			<input 
+				type="text" 
+				placeholder="body" 
+				value={body}
+				onChange={(e)=>setBody(e.target.value)}
+			/>
 			<div className="file-field input-field">
 				<div className="btn purple lighten-2">
 					<span>Upload Image</span>
