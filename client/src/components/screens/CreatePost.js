@@ -17,7 +17,7 @@ const CreatePost = () => {
 		})
 		.then(res=>res.json())
 		.then(data=>{
-			console.log(data);
+			setUrl(data.url);
 		})
 		.catch(err=>{
 			console.log(err);
