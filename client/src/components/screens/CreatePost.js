@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import M from 'materialize-css';
 import {useHistory} from 'react-router-dom';
 
@@ -9,6 +9,34 @@ const CreatePost = () => {
 	const [body, setBody] = useState("");
 	const [image, setImage] = useState("");
 	const [url, setUrl] = useState(""); 
+	useEffect(()=>{
+		if(url){
+			fetch("/createpost",{
+	            method:"post",
+	            headers:{
+	                "Content-Type":"application/json",
+	                "Authorization":"Bearer " + localStorage.getItem("jwt")
+	            },
+	            body:JSON.stringify({
+	                title,
+	                body,
+	                photo:url
+	            })
+	        }).then(res=>res.json())
+	        .then(data=>{
+	            console.log(data)
+	           if(data.error){
+	              M.toast({html: data.error,classes:"#c62828 red darken-3"})
+	           }
+	           else{
+	               M.toast({html:"created post successfully",classes:"#43a047 green darken-1"})
+	               history.push('/')
+	           }
+	        }).catch(err=>{
+	            console.log(err)
+	        })
+	    }
+	}, [url]);
 
 	const postDetails = () => {
 		const data = new FormData();
@@ -26,30 +54,6 @@ const CreatePost = () => {
 		.catch(err=>{
 			console.log(err);
 		});
-		fetch("/createpost",{
-            method:"post",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer " + localStorage.getItem("jwt")
-            },
-            body:JSON.stringify({
-                title,
-                body,
-                photo:url
-            })
-        }).then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-           if(data.error){
-              M.toast({html: data.error,classes:"#c62828 red darken-3"})
-           }
-           else{
-               M.toast({html:"created post successfully",classes:"#43a047 green darken-1"})
-               history.push('/')
-           }
-        }).catch(err=>{
-            console.log(err)
-        })
 	};
 
    	return (
@@ -75,7 +79,7 @@ const CreatePost = () => {
 			/>
 			<div className="file-field input-field">
 				<div className="btn purple lighten-2">
-					<span>Upload Image</span>
+					<span>Upload imageage</span>
 					<input type="file" onChange={(e)=>setImage(e.target.files[0])} />
 				</div>
 				<div className="file-path-wrapper">
