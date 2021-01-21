@@ -7,10 +7,10 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const PostData = ()=>{
-        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
-            return
-        }
+    	if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+        	M.toast({html: "invalid email",classes:"#c62828 red darken-3"});
+            return;
+        };
         fetch("/login",{
             method:"post",
             headers:{
@@ -22,18 +22,20 @@ const Login = () => {
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
-           if(data.error){
-              M.toast({html: data.error,classes:"#c62828 red darken-3"})
-           }
-           else{
-               M.toast({html:"signedin success",classes:"#43a047 green darken-1"})
-               history.push('/')
-           }
+            console.log(data);
+        	if(data.error){
+            	M.toast({html: data.error,classes:"#c62828 red darken-3"});
+           	}
+           	else{
+           		localStorage.setItem("jwt", data.token);
+           		localStorage.setItem("user", JSON.stringify(data.user));
+            	M.toast({html:"signedin success",classes:"#43a047 green darken-1"});
+            	history.push('/');
+           	};
         }).catch(err=>{
-            console.log(err)
-        })
-	}
+           	console.log(err);
+        });
+	};
 
 	return (
 		<div className="mycard">
