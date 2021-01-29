@@ -13,6 +13,12 @@ export const userContext = createContext();
 
 const Routing = () => {
   const history = useHistory();
+
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(typeof(user));
+  });
+
   return (
     <Switch>
       <Route exact   path="/">
