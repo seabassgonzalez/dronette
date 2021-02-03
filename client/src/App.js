@@ -17,16 +17,18 @@ const Routing = () => {
   const {state, dispatch} = useContext(UserContext);
 
   useEffect(()=>{
+    // use JSON.parse because user is a string
     const user = JSON.parse(localStorage.getItem("user"));
+    // double check that user is a string
     console.log(typeof(user), user);
-    // should call dispatch and make user dater available with state update using useContext
     if(user){
+      // if user dispatch action type USER and payload of this user
       dispatch({type:"USER", payload:user});
       history.push('/');
     }else{
       history.push('/login'); 
     }
-  });
+  }, []);
 
   return (
     <Switch>
