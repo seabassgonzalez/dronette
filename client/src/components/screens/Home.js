@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Home = () => {
+	const [data, setData] = useState([]);
+	useEffect(()=>{
+		fetch('/allposts', {
+			headers:{
+				"Authorization":"Bearer " + localStorage.getItem("jwt")
+			}
+		}).then(res=>res.json())
+		.then
+	}, []);
 	return (
 		<div className="home">
 			<div className="card home-card">
