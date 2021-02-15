@@ -24,7 +24,7 @@ const Routing = () => {
     if(user){
       // if user dispatch action type USER and payload of this user
       dispatch({type:"USER", payload:user});
-      history.push('/');
+      // history.push('/');
     }else{
       history.push('/login'); 
     }
