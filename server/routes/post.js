@@ -67,4 +67,24 @@ router.put('/like', requireLogin, (req,res) => {
 	});
 });
 
+// can use .post, but .put better since updating likes with unliking
+	// to the given post
+		// pulling the id of the user currently logged in to likes array, accessing logged in user because middleware added in requireLogin
+router.put('/unlike', requireLogin, (req,res) => {
+	Post.findByIdAndUpdate(req.body.postId, {
+		$pull:{likes:req.user._id}
+	}, {
+		// to ensure that mongoDB returns a new record
+		new:true
+	}).exec((err, result) => {
+		if(err){
+			return (
+				res.status(422).json({error:err})
+			);
+		}else{
+			res.json(result);
+		}
+	});
+});
+
 module.exports = router;
