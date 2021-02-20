@@ -47,4 +47,24 @@ router.get('/myposts', requireLogin, (req, res) => {
 	});
 });
 
+// can use .post, but .put better since updating likes
+	// to the given post
+		// pushing the id of the user currently logged in to likes array, accessing logged in user because middleware added in requireLogin
+router.put('/like', requireLogin, (req,res) => {
+	Post.findByIdAndUpdate(req.body.postId, {
+		$push:{likes:req.user._id}
+	}, {
+		// to ensure that mongoDB returns a new record
+		new:true
+	}).exec((err, result) => {
+		if(err){
+			return (
+				res.status(422).json({error:err})
+			);
+		}else{
+			res.json(result);
+		}
+	});
+});
+
 module.exports = router;

@@ -15,6 +15,7 @@ module.exports = (req, res, next) => {
 		}
 		const { _id } = payload;
 		User.findById(_id).then(userdata =>{
+			// attach user data to req.user to access later on
 			req.user = userdata;
 			next();
 		});
