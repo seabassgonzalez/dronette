@@ -1,4 +1,4 @@
-const express = require('express');
+           const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../middleware/requireLogin');
@@ -15,12 +15,18 @@ router.get('/allposts', requireLogin, (req, res) =>{
 	});
 })
 
+// /createpost a protected route
+	// if no title body or photo
+		// return error
+	// set password to undefined
+	// create post new instance of Post model
 router.post('/createpost', requireLogin, (req, res) => {
 	const {title, body, photo} = req.body;
 	if(!title || !body || !photo){
-	console.log(title, body, photo);
+		console.log(title, body, photo);
 		return res.status(422).json({error: "Please add all fields here"});
 	}
+	console.log(req.user);
 	req.user.password = undefined;
 	const post = new Post({
 		title,
