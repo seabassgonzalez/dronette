@@ -30,8 +30,20 @@ const Home = () => {
 		})
 	};
 
+	// unlikePost takes an id
+		// fetch unlike route
+			// put method and headers
+			// body set to json string postId being passed in id
+		// .then response to json
+		// .then result
+			// newData set to map over data for each item
+				// if item _id == result _id
+					// return result
+				// else
+					// return item
+			// setData passing it newData
 	const unlikePost = (id) => {
-		fetch('/like', {
+		fetch('/unlike', {
 			method: "put", 
 			headers: {
 				"Content-Type":"application/json",
@@ -42,7 +54,15 @@ const Home = () => {
 			})
 		}).then(res=>res.json())
 		.then(result=>{
-			console.log(result)
+			console.log(result);
+			const newData = data.map(item=>{
+				if(item._id == result._id){
+					return result;
+				}else{
+					return item;
+				}
+			})
+			setData(newData);
 		})
 	};
 
