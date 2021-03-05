@@ -1,4 +1,4 @@
-           const express = require('express');
+const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../middleware/requireLogin');
@@ -13,7 +13,7 @@ router.get('/allposts', requireLogin, (req, res) =>{
 	.catch(err=>{
 		console.log(err);
 	});
-})
+});
 
 // /createpost a protected route
 	// if no title body or photo
@@ -96,13 +96,17 @@ router.put('/unlike', requireLogin, (req,res) => {
 router.put('/comment', requireLogin, (req,res) => {
 	const comment = {
 		text: req.body.text,
+		//access user off token grab _id
 		postedBy:req.user._id
 	}
 	Post.findByIdAndUpdate(req.body.postId, {
-		$push:{likes:req.user._id}
+		$push:{comments:comment}
 	}, {
 		new:true
-	}).exec((err, result) => {
+	})
+	// populate postedBy to access more information inside comment
+	.populate("comments.postedBy", "_id name")
+	.exec((err, result) => {
 		if(err){
 			return (
 				res.status(422).json({error:err})
