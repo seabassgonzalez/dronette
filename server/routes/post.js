@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 const requireLogin = require('../middleware/requireLogin');
 const Post =  mongoose.model("Post");
 
+// allposts route, protected
+	// populate postedBy and id and name
+	// populate comments postedBy id and name
 router.get('/allposts', requireLogin, (req, res) =>{
 	Post.find()
 	.populate("postedBy", "_id name")
+	.populate("comments.postedBy", "_id name")
 	.then(posts=>{
 		res.json({posts});
 	})
@@ -105,7 +109,9 @@ router.put('/comment', requireLogin, (req,res) => {
 		new:true
 	})
 	// populate postedBy to access more information inside comment
+	// populate postedBy with _id and name
 	.populate("comments.postedBy", "_id name")
+	.populate("postedBy", "_id name")
 	.exec((err, result) => {
 		if(err){
 			return (
