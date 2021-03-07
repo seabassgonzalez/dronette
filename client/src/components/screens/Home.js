@@ -108,13 +108,27 @@ const Home = () => {
 		})
 	};
 
+	const deletePost = (postid)=>{
+		fetch(`/deletepost/${postid}`, {
+			method:"delete",
+			headers:{
+				Authorization:"Bearer " + localStorage.getItem("jwt")
+			}
+		}).then(res=>res.json())
+		.then(result=>{
+			console.log(result)
+		})
+	};
+
 	return (
 		<div className="home">
 			{
 				data.map(item=>{	
 					return(
 						<div className="card home-card" key={item._id}>
-							<h5>{item.postedBy.name}</h5>
+							<h5>{item.postedBy.name}<i className="material-icons" style={{
+								float: "right"
+							}}>delete</i></h5>
 							<div className="card-image">
 								<img src={item.photo} />
 							</div>
