@@ -8,7 +8,7 @@ const User = mongoose.model("User");
 // find user
 	// find posts created by user
 
-reouter.get('/user/:id', (req, res) => {
+router.get('/user/:id', requireLogin, (req, res) => {
 	User.findOne({_id:req.param.id})
 	.select("-password")
 	.then(user=>{
