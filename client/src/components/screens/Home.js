@@ -120,7 +120,12 @@ const Home = () => {
 			const newData = data.filter(item=>{
 				return item._id !== result._id;
 			})
+			setData(newData)
 		})
+	};
+ 
+	const deleteComment = (recordid) => {
+		console.log("this is the commentid: ", recordid);
 	};
 
 	return (
@@ -156,8 +161,15 @@ const Home = () => {
 								<p>{item.body}</p>
 								{
 									item.comments.map(record=>{
+										console.log("this is the record: ", record)
 										return(
-											<h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}</span> {record.text}</h6>
+											<h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}</span> {record.text}{item.postedBy._id == state._id
+								&& <i className="material-icons" style={{
+									float: "right"
+							}}
+							onClick={()=>deleteComment(record._id)}
+							>delete</i>
+							}</h6>
 										);
 									})
 								}

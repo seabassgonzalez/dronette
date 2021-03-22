@@ -124,6 +124,7 @@ router.put('/comment', requireLogin, (req,res) => {
 });
 
 router.delete('/deletepost/:postId', requireLogin, (req,res)=>{
+	console.log(req.params);                                                  
 	Post.findOne({_id:req.params.postId})
 	.populate("postedBy", "_id")
 	.exec((err, post) =>{
@@ -138,7 +139,26 @@ router.delete('/deletepost/:postId', requireLogin, (req,res)=>{
 				console.log(err);
 			})
 		}
-	})
-})
+	});
+});
+
+router.delete('/deletecomment/:commentId', requireLogin, (req,res)=>{
+	console.log(req.params);                                                  
+	record.findOne({_id:req.params.postId})
+	.populate("postedBy", "_id")
+	.exec((err, post) =>{
+		if(err || !post){
+			return res.status(422).json({error:err});
+		}
+		if(post.postedBy._id.toString() === req.user._id.toString()){
+			post.remove()
+			.then(result =>{
+				res.json(result);
+			}).catch(err=>{
+				console.log(err);
+			})
+		}
+	});
+});
 
 module.exports = router;
