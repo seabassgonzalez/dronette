@@ -20,6 +20,7 @@ const Routing = () => {
   useEffect(()=>{
     // use JSON.parse because user is a string
     const user = JSON.parse(localStorage.getItem("user"));
+    console.log('user parsed is: ', user);
     // double check that user is a string
     console.log(typeof(user), user);
     if(user){

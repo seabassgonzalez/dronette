@@ -5,17 +5,16 @@ import {useParams} from 'react-router-dom';
 const Profile = () => {
 	const [mypics, setPics] = useState([]);
 	const {state, dispatch} = useContext(UserContext);
-	const {userid} = useParams;
+	const {userid} = useParams();
 	console.log(userid)
 	useEffect(() => {
-		fetch('/myposts', {
+		fetch(`/user/${userid}`, {
 			headers:{
 				"Authorization":"Bearer " + localStorage.getItem("jwt")
 			}
 		}).then(res=>res.json())
 		.then(result=>{
 			console.log(result);
-			setPics(result.myposts);
 		})
 	}, []);
 	return (
