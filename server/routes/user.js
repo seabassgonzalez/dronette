@@ -28,6 +28,10 @@ router.get('/user/:id', requireLogin, (req, res) => {
 // follow
 	// find user by id and update with followId
 		// push user._id to followers array
+		// new true to return new mongo record
+		// handle error
+		// find User by id and update
+			// push id to following array with followid .
 router.put('follow', requireLogin, (req, res)=>{
 	User.findByIdAndUpdate(req.body.followId, {
 		$push:{followers:req.user._id}
@@ -42,6 +46,7 @@ router.put('follow', requireLogin, (req, res)=>{
 		},{new:true}).then(result=>{
 			res.json(result);
 		}).catch(err=>{
+			console.log(err);
 			return res.status(422).json({error:err});
 		})
 	})
