@@ -18,6 +18,19 @@ const Profile = () => {
 			setProfile(result);
 		})
 	}, []);
+
+	const followUser = () =>{
+		fetch('/follow'){
+			method:"put",
+			headers:{
+				"Content-Type":"application/json",
+				"Authorization":"Bearer " + localStorage.getItem('jwt')
+			},
+			body:JSON.stringify({
+				followId:
+			})
+		}
+	}
 	return (
 		<>
 		{userProfile ? 
