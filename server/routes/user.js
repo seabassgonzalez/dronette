@@ -50,6 +50,33 @@ router.put('follow', requireLogin, (req, res)=>{
 			return res.status(422).json({error:err});
 		})
 	})
+});
+
+// unfollow
+	// find user by id and update with unfollowId
+		// pull user._id to followers array
+		// new true to return new mongo record
+		// handle error
+		// find User by id and update
+			// pull id to following array with followid .
+router.put('unfollow', requireLogin, (req, res)=>{
+	User.findByIdAndUpdate(req.body.unfollowId, {
+		$pull:{followers:req.user._id}
+	}, {
+		new:true
+	}, (err, result)=>{
+		if(err){
+			return res.status(422).json({error: err});
+		}
+		User.findByIdAndUpdate(req.user._id, {
+			$pull:{following:req.body.unfollowId}
+		},{new:true}).then(result=>{
+			res.json(result);
+		}).catch(err=>{
+			console.log(err);
+			return res.status(422).json({error:err});
+		})
+	})
 })
 
 module.exports = router;
