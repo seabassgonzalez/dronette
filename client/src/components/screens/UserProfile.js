@@ -57,6 +57,9 @@ const Profile = () => {
 								<h6>50 followers</h6>
 								<h6>50 following</h6>
 							</div>
+							<button className="btn waves-effect waves-light #9b59b6 purple lighten-2"
+							onClick={()=>followUser()}
+							>
 						</div> 
 					</div>
 					<div className="gallery">
