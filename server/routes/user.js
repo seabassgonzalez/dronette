@@ -32,7 +32,7 @@ router.get('/user/:id', requireLogin, (req, res) => {
 		// handle error
 		// find User by id and update
 			// push id to following array with followid .
-router.put('follow', requireLogin, (req, res)=>{
+router.put('/follow', requireLogin, (req, res)=>{
 	User.findByIdAndUpdate(req.body.followId, {
 		$push:{followers:req.user._id}
 	}, {
@@ -59,7 +59,7 @@ router.put('follow', requireLogin, (req, res)=>{
 		// handle error
 		// find User by id and update
 			// pull id to following array with followid .
-router.put('unfollow', requireLogin, (req, res)=>{
+router.put('/unfollow', requireLogin, (req, res)=>{
 	User.findByIdAndUpdate(req.body.unfollowId, {
 		$pull:{followers:req.user._id}
 	}, {

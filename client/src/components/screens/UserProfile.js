@@ -19,21 +19,21 @@ const Profile = () => {
 		})
 	}, []);
 
-	const followUser = () =>{
-		fetch('/follow', {
-			method:"put",
-			headers:{
-				"Content-Type":"application/json",
-				"Authorization":"Bearer " + localStorage.getItem('jwt')
-			},
-			body:JSON.stringify({
-				followId: userid
-			})
-		}).then(res=>res.json())
-		.then(data=>{
-			console.log(data);
-		})
-	}
+    const followUser = ()=>{
+        fetch('/follow',{
+            method:"put",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem('jwt')
+            },
+            body:JSON.stringify({
+                followId:userid
+            })
+        }).then(res=>res.json())
+        .then(data=>{
+        	console.log(data);
+        })
+    }
 	return (
 		<>
 		{userProfile ? 
@@ -60,6 +60,8 @@ const Profile = () => {
 							<button className="btn waves-effect waves-light #9b59b6 purple lighten-2"
 							onClick={()=>followUser()}
 							>
+							Follow
+							</button>
 						</div> 
 					</div>
 					<div className="gallery">
