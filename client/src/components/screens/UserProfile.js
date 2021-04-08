@@ -34,6 +34,12 @@ const Profile = () => {
         	console.log(data);
         	dispatch({type:"UPDATE", payload:{following:data.following, followers:data.followers}});
         	localStorage.setItem("user", JSON.stringify(data));
+        	setProfile((prevState)=>{
+        		return {
+        			...prevState,
+        			user:data
+        		};
+        	});
         })
     }
 	return (
