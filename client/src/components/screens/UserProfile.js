@@ -32,6 +32,8 @@ const Profile = () => {
         }).then(res=>res.json())
         .then(data=>{
         	console.log(data);
+        	dispatch({type:"UPDATE", payload:{following:data.following, followers:data.followers}});
+        	localStorage.setItem("user", JSON.stringify(data));
         })
     }
 	return (
@@ -54,8 +56,8 @@ const Profile = () => {
 							<h5>{userProfile.user.email}</h5>
 							<div style={{display:"flex", justifyContent:"space-between", width:"108%"}}>
 								<h6>{userProfile.posts.length} posts</h6>
-								<h6>50 followers</h6>
-								<h6>50 following</h6>
+								<h6>{userProfile.user.followers.length} followers</h6>
+								<h6>{userProfile.user.following.length} following</h6>
 							</div>
 							<button className="btn waves-effect waves-light #9b59b6 purple lighten-2"
 							onClick={()=>followUser()}
