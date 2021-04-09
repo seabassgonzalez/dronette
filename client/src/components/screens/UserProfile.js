@@ -45,6 +45,47 @@ const Profile = () => {
         	});
         })
     }
+
+    // unfollowUser
+    	// fetch to follow route
+    		// put method
+    		// headers
+    		// stringify body
+    			// pass unfollowId as expected by user unfollow route
+    	// response to json
+    	// taking data
+    		// updating passing following and followers
+    		// update localStorage
+    		// set Profile
+    			// spread operator preserving prevState
+    			// update user followers
+    const unfollowUser = ()=>{
+        fetch('/follow',{
+            method:"put",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem('jwt')
+            },
+            body:JSON.stringify({
+                unfollowId:userid
+            })
+        }).then(res=>res.json())
+        .then(data=>{
+        	console.log(data);
+        	dispatch({type:"UPDATE", payload:{following:data.following, followers:data.followers}});
+        	localStorage.setItem("user", JSON.stringify(data));
+        	setProfile((prevState)=>{
+        		return {
+        			...prevState,
+        			user:{
+        				...prevState.user,
+        				followers: [...prevState.user.followers, data._id]
+        			}
+        		};
+        	});
+        })
+    }
+
 	return (
 		<>
 		{userProfile ? 

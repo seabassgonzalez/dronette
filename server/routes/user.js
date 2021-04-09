@@ -53,7 +53,7 @@ router.put('/follow', requireLogin, (req, res)=>{
 });
 
 // unfollow
-	// find user by id and update with unfollowId
+	// find user by id and update receiving unfollowId
 		// pull user._id to followers array
 		// new true to return new mongo record
 		// handle error
