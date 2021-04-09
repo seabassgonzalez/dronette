@@ -37,7 +37,10 @@ const Profile = () => {
         	setProfile((prevState)=>{
         		return {
         			...prevState,
-        			user:data
+        			user:{
+        				...prevState.user,
+        				followers: [...prevState.user.followers, data._id]
+        			}
         		};
         	});
         })
