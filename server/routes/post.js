@@ -19,6 +19,22 @@ router.get('/allposts', requireLogin, (req, res) =>{
 	});
 });
 
+// subscribed posts route, protected
+	// find postedby in following list
+	// populate postedBy and id and name
+	// populate comments postedBy id and name
+router.get('/subposts', requireLogin, (req, res) =>{
+	Post.find({postedBy:{$in:req.user.following}})
+	.populate("postedBy", "_id name")
+	.populate("comments.postedBy", "_id name")
+	.then(posts=>{
+		res.json({posts});
+	})
+	.catch(err=>{
+		console.log(err);
+	});
+});
+
 // /createpost a protected route
 	// if no title body or photo
 		// return error

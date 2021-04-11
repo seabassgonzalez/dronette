@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 
 const Profile = () => {
 	const [userProfile, setProfile] = useState(null);
+	const [showFollow, setShowFollow] = useState(true);
 	const {state, dispatch} = useContext(UserContext);
 	const {userid} = useParams();
 	console.log(userid)
@@ -43,6 +44,7 @@ const Profile = () => {
         			}
         		};
         	});
+        	setShowFollow(false);
         })
     }
 
@@ -60,7 +62,7 @@ const Profile = () => {
     			// spread operator preserving prevState
     			// update user followers
     const unfollowUser = ()=>{
-        fetch('/follow',{
+        fetch('/unfollow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -75,14 +77,16 @@ const Profile = () => {
         	dispatch({type:"UPDATE", payload:{following:data.following, followers:data.followers}});
         	localStorage.setItem("user", JSON.stringify(data));
         	setProfile((prevState)=>{
+        		const newFollower = prevState.user.followers.filter(item=>item != data._id);
         		return {
         			...prevState,
         			user:{
         				...prevState.user,
-        				followers: [...prevState.user.followers, data._id]
+        				followers: newFollower
         			}
         		};
         	});
+        	setShowFollow(true);
         })
     }
 
@@ -109,11 +113,29 @@ const Profile = () => {
 								<h6>{userProfile.user.followers.length} followers</h6>
 								<h6>{userProfile.user.following.length} following</h6>
 							</div>
-							<button className="btn waves-effect waves-light #9b59b6 purple lighten-2"
+							{showFollow ?
+							<button 
+							style={{
+								margin: "10px"
+							}}
+							className="btn waves-effect waves-light #9b59b6 purple lighten-2"
 							onClick={()=>followUser()}
 							>
-							Follow
+								Follow
 							</button>
+							: 
+							<button 
+							style={{
+								margin: "10px"
+							}}
+							className="btn waves-effect waves-light #9b59b6 purple lighten-2"
+							onClick={()=>unfollowUser()}
+							>
+								Unfollow
+							</button>
+
+							}
+							
 						</div> 
 					</div>
 					<div className="gallery">
