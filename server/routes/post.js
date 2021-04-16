@@ -20,10 +20,10 @@ router.get('/allposts', requireLogin, (req, res) =>{
 });
 
 // subscribed posts route, protected
-	// find postedby in following list
+	// find postedby in following list off logged in user
 	// populate postedBy and id and name
 	// populate comments postedBy id and name
-router.get('/subposts', requireLogin, (req, res) =>{
+router.get('/getsubposts', requireLogin, (req, res) =>{
 	Post.find({postedBy:{$in:req.user.following}})
 	.populate("postedBy", "_id name")
 	.populate("comments.postedBy", "_id name")

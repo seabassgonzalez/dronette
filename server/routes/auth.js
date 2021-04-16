@@ -40,6 +40,20 @@ router.post('/signup', (req, res) => {
 	});
 });
 
+// post to login route
+	// set email and password to req.body
+	// check if no email or no password
+		// return error
+	// find email
+		// if no saved usesr
+			// return error
+		// compare password and saved password using bcrypt library
+			// if match
+				// set token
+				// set id name email followers and following to savedUser
+				// pass json response of token and user
+			// else
+				// return error
 router.post('/login', (req, res) => {
 	const {email, password} = req.body;
 	if(!email || !password){
@@ -54,8 +68,8 @@ router.post('/login', (req, res) => {
 		.then(doMatch=>{
 			if(doMatch){
 				const token = jwt.sign({_id:savedUser._id}, JWT_SECRET);
-				const {_id, name, email} = savedUser;
-				res.json({token, user:{_id, name, email}});
+				const {_id, name, email, followers, following} = savedUser;
+				res.json({token, user:{_id, name, email, followers, following}});
 			} else {
 				return res.status(422).json({error:"Invalid email or password"});
 			}
