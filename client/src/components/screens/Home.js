@@ -129,10 +129,14 @@ const Home = () => {
 		console.log("this is the commentid: ", recordid);
 	};
 
+	const postsArray = data; 
+	const postsReversed = [...postsArray].reverse();
 	return (
 		<div className="home">
 			{
-				data.map(item=>{	
+				postsReversed.map(item=>{	
+					console.log('postsArray = ', postsArray)
+					console.log('postsReversed = ', postsReversed)
 					return(
 						<div className="card home-card" key={item._id}>
 							<h5><Link to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile/"}>{item.postedBy.name}</Link>{item.postedBy._id == state._id
