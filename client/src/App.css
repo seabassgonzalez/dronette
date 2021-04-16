@@ -50,3 +50,11 @@ a{
 	right: 20px !important;
 	left: auto !important
 }
+
+.user-title {
+	padding: 5px;
+}
+
+.material-icons:hover{
+	cursor: pointer;
+}
