@@ -79,7 +79,7 @@ const CreatePost = () => {
 			/>
 			<div className="file-field input-field">
 				<div className="btn purple lighten-2">
-					<span>Upload imageage</span>
+					<span>Upload Image</span>
 					<input type="file" onChange={(e)=>setImage(e.target.files[0])} />
 				</div>
 				<div className="file-path-wrapper">

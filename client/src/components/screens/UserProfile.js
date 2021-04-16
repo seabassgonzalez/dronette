@@ -102,7 +102,7 @@ const Profile = () => {
 					}}>
 						<div>
 							<img style={{width:"160px", height:"160px", borderRadius:"80px"}}
-							src="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s150x150/120075726_798496587650763_8285517711531601562_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=haWGw0aeICQAX_P5nP8&tp=1&oh=023f58eeb6cd52f5813e7208ec1bacac&oe=6051BF41"
+							src={userProfile.user.profilePic}
 							/>
 						</div>
 						<div>

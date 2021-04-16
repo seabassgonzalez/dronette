@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	profilePic:{
+		type: String,
+		default: "https://res.cloudinary.com/dronette/image/upload/v1618603383/noimage_user_vcuy55.png"
+	},
 	followers:[{
 		type: ObjectId,
 		ref: "User"
