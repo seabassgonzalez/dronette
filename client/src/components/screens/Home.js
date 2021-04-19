@@ -125,8 +125,23 @@ const Home = () => {
 		})
 	};
  
-	const deleteComment = (recordid) => {
-		console.log("this is the commentid: ", recordid);
+	const deleteComment = (postid, commentid) => {
+		console.log('this is the post id', postid);
+		console.log('this is the commentid: ', commentid);
+		console.log('data in delete comment is ', data);
+		fetch(`/deletecomment/${commentid}`, {
+			method:"delete",
+			headers:{
+				Authorization:"Bearer " + localStorage.getItem("jwt")
+			}
+		}).then(res=>res.json())
+		.then(result=>{
+			console.log(result);
+			const newData = data.filter(item=>{
+				return item._id !== result._id;
+			})
+			setData(newData)
+		})
 	};
 
 	const postsArray = data; 
@@ -167,15 +182,16 @@ const Home = () => {
 								<p>{item.body}</p>
 								{
 									item.comments.map(record=>{
-										console.log("this is the record: ", record)
+										console.log("this is the record: ", record);
+										console.log('item in items map is ', item);
 										return(
-											<h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}</span> {record.text}{item.postedBy._id == state._id
-								&& <i className="material-icons" style={{
-									float: "right"
-							}}
-							onClick={()=>deleteComment(record._id)}
-							>delete</i>
-							}</h6>
+											<h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}</span> {record.text}{record.postedBy._id == state._id
+												&& <i className="material-icons" style={{
+													float: "right"
+											}}
+											onClick={()=>deleteComment(item._id, record._id)}
+											>delete</i>
+											}</h6>
 										);
 									})
 								}

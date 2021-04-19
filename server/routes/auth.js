@@ -46,7 +46,7 @@ router.post('/signup', (req, res) => {
 	// check if no email or no password
 		// return error
 	// find email
-		// if no saved usesr
+		// if no saved user
 			// return error
 		// compare password and saved password using bcrypt library
 			// if match

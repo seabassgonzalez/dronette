@@ -159,8 +159,12 @@ router.delete('/deletepost/:postId', requireLogin, (req,res)=>{
 });
 
 router.delete('/deletecomment/:commentId', requireLogin, (req,res)=>{
-	console.log(req.params);                                                  
-	record.findOne({_id:req.params.postId})
+	console.log('req.params are ', req.params); 
+	console.log('Post is ', Post);
+	console.log('Post comments are ', comments);
+	console.log('record is ', record);    
+
+	req.params.commentId.findOne({_id:req.params.commentId})
 	.populate("postedBy", "_id")
 	.exec((err, post) =>{
 		if(err || !post){
