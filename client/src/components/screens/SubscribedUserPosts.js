@@ -151,7 +151,6 @@ const Home = () => {
 								<img src={item.photo} />
 							</div>
 							<div className="card-content">
-								<i className="material-icons" style={{color:"red"}}>favorite</i>
 								{item.likes.includes(state._id)
 									?
 								<i className="material-icons"

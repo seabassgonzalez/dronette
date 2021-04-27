@@ -18,7 +18,8 @@ const Home = () => {
 		});		
 	}, []);
 	
-	const likePost = (id) => {
+	const likePost = (item, id) => {
+		console.log('item in like post is ', item);
 		fetch('/like', {
 			method: "put", 
 			headers: {
@@ -39,6 +40,7 @@ const Home = () => {
 				}
 			})
 			setData(newData);
+			console.log('item after like post is ', item);
 		}).catch(err=>{
 			console.log(err);
 		})
@@ -117,7 +119,7 @@ const Home = () => {
 			}
 		}).then(res=>res.json())
 		.then(result=>{
-			console.log(result);
+			// console.log(result);
 			const newData = data.filter(item=>{
 				return item._id !== result._id;
 			})
@@ -136,7 +138,7 @@ const Home = () => {
 			}
 		}).then(res=>res.json())
 		.then(result=>{
-			console.log(result);
+			// console.log(result);
 			const newData = data.filter(item=>{
 				return item._id !== result._id;
 			})
@@ -151,8 +153,7 @@ const Home = () => {
 		<div className="home">
 			{
 				postsReversed.map(item=>{	
-					console.log('postsArray = ', postsArray)
-					console.log('postsReversed = ', postsReversed)
+					// console.log('state id when loading is ', state._id);
 					return(
 						<div className="card home-card" key={item._id}>
 							<h5 className="user-title"><Link to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile/"}>{item.postedBy.name}</Link>{item.postedBy._id == state._id
@@ -166,7 +167,7 @@ const Home = () => {
 								<img src={item.photo} />
 							</div>
 							<div className="card-content">
-								<i className="material-icons" style={{color:"red"}}>favorite</i>
+								<div>
 								{item.likes.includes(state._id)
 									?
 								<i className="material-icons"
@@ -174,16 +175,17 @@ const Home = () => {
 								>thumb_down</i>
 									: 
 								<i className="material-icons"
-									onClick={()=>{likePost(item._id)}}
+									onClick={()=>{likePost(item, item._id)}}
 								>thumb_up</i>
 								}
 								<h6>{item.likes.length} likes</h6>
+								</div>
 								<h6>{item.title}</h6>
 								<p>{item.body}</p>
 								{
 									item.comments.map(record=>{
 										console.log("this is the record: ", record);
-										console.log('item in items map is ', item);
+										// console.log('item in items map is ', item);
 										return(
 											<h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name}</span> {record.text}{record.postedBy._id == state._id
 												&& <i className="material-icons" style={{
