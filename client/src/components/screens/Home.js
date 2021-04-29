@@ -31,10 +31,10 @@ const Home = () => {
 			})
 		}).then(res=>res.json())
 		.then(result=>{
-			console.log(result);
+			console.log('result in likepost is ', result);
 			const newData = data.map(item=>{
 				if(item._id == result._id){
-					return result;
+					return {...item, likes: result.likes};
 				}else{
 					return item;
 				}
@@ -73,7 +73,7 @@ const Home = () => {
 			console.log(result);
 			const newData = data.map(item=>{
 				if(item._id == result._id){
-					return result;
+					return {...item, likes: result.likes};
 				}else{
 					return item;
 				}

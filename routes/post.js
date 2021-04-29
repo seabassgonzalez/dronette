@@ -88,6 +88,7 @@ router.put('/like', requireLogin, (req,res) => {
 				res.status(422).json({error:err})
 			);
 		}else{
+			console.log('result in like is ', result);
 			res.json(result);
 		}
 	});
