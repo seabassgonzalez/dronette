@@ -4,8 +4,10 @@ const app = express();
 const mongoose = require('mongoose');
 // add dynamic port for heroku to choose port
 const PORT = process.env.PORT || 5000;	
+const env = process.env.NODE_ENV || 'development';
 const { MONGOURI } = require('./config/keys');
 
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connect(MONGOURI, {
 	useNewUrlParser: true,
@@ -39,6 +41,16 @@ if(process.env.NODE_ENV=="production"){
 	})
 };
 
+if(env === 'test'){
+  process.env.MONGODB_URI = 'mongodb://localhost:27017/news-test'
+} else {
+  process.env.MONGODB_URI = 'mongodb://localhost:27017/news'
+}
+
 app.listen(PORT, () => {
 	console.log("Server is running on ", PORT);
 });
+
+module.exports = function(){
+	return 'hello';
+};

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "test": "export NODE_ENV=test && nodemon --exec 'mocha' || true"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
-    "mocha": "^8.3.2"
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }

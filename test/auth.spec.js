@@ -1,10 +1,9 @@
-const assert = require('assert');
-const auth = require('../routes/auth');
+const request = require('supertest');
+const assert = require('chai').assert; 
+const app = require('../app');
 
-describe('auth routes', function(){
-	it('should return message saved succesfully', function(){
-		// call function
-
-		// make assertion
+describe('App', function(){
+	it('should return hello', function(){
+		assert.equal(app(), 'hello');
 	})
 });
